@@ -4,6 +4,8 @@
 
 Sentiment Observatory is a cross-platform content analysis tool that scrapes, transcribes, and analyzes social media content from LinkedIn, Reddit, X/Twitter, YouTube, and TikTok. It uses Groq's LLMs for **multimodal sentiment, theme, and virality analysis**.
 
+Demo: https://drive.google.com/file/d/1vekIT3JH41ksMzoFnnc9NYM-aiBKDB2h
+
 ---
 
 ## Core Features
