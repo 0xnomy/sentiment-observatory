@@ -1,0 +1,11 @@
+python-dotenv
+requests
+pytubefix
+pydub
+groq
+langchain-groq
+langchain-core
+playwright
+numpy
+scikit-learn
+pyktok
