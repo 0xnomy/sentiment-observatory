@@ -1,0 +1,48 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.env
+.venv
+env/
+venv/
+ENV/
+.playwright/
+tiktok_transcriber.py
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Data & output directories (generated at runtime)
+data/networks/
+data/trends/
+data/vectors/
+
+# Analysis outputs
+output/
+reports/
+
+# Temporary or backup files
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Python dependency caches
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
