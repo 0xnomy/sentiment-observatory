@@ -27,10 +27,6 @@ except Exception:
 # === CONFIG ===
 THREE_MINUTES_MS = 3 * 60 * 1000
 
-# Optional: set ffmpeg path manually if not in PATH
-# AudioSegment.converter = r"C:\ffmpeg\bin\ffmpeg.exe"
-# AudioSegment.ffprobe   = r"C:\ffmpeg\bin\ffprobe.exe"
-
 
 def _ensure_output_dir(directory_path: str) -> Path:
     output_dir = Path(directory_path)
