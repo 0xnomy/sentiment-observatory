@@ -321,9 +321,37 @@
 
                 let data
                 try {
-                    data = await callAnalyze('/analyze')
+                    // Check if it's a LinkedIn URL and use our specific endpoint
+                    if (url.includes('linkedin.com')) {
+                        data = await callAnalyze('/scrape/linkedin')
+                        // Transform the response to match the expected format
+                        if (data.success && data.content) {
+                            data = {
+                                report: {
+                                    platform: 'linkedin',
+                                    author: data.content.author || 'Unknown',
+                                    content: data.content.post_text || 'No content found',
+                                    engagement: {
+                                        comments: data.content.comments || 'N/A'
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        // Use the original analyze endpoint for other platforms
+                        try {
+                            data = await callAnalyze('/analyze')
+                        } catch (e1) {
+                            data = await callAnalyze('/appalyze')
+                        }
+                    }
                 } catch (e1) {
-                    data = await callAnalyze('/appalyze')
+                    // Fallback to the original analyze endpoint
+                    try {
+                        data = await callAnalyze('/analyze')
+                    } catch (e2) {
+                        data = await callAnalyze('/appalyze')
+                    }
                 }
 
                 const report = data.report || data
