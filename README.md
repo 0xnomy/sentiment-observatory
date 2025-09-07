@@ -25,14 +25,3 @@ Sentiment Observatory is a tool for scraping and analyzing online content from s
 
 ## License
 This project is licensed under the MIT License. See LICENSE for details.
-app.py                  # Main pipeline
-server.py               # Web server
-scraper.py              # Scraping logic
-advanced_analyzer.py    # LLM content analysis
-audio_transcriber.py    # YouTube transcription
-tiktok_transcriber.py   # TikTok transcription
-virality_agent.py       # Virality scoring
-trend_analyzer.py       # Trend tracking
-vector_engine.py        # Similarity & clustering
-web/                    # Frontend files
-```
