@@ -1,103 +1,30 @@
 # Sentiment Observatory
 
 ## Overview
+Sentiment Observatory is a tool for scraping and analyzing online content from social media platforms like LinkedIn, Reddit, and X/Twitter. It extracts text, images, and metadata, then performs sentiment analysis, theme extraction, virality scoring, and trend analysis using large language models.
 
-Sentiment Observatory is a cross-platform content analysis tool that scrapes, transcribes, and analyzes social media content from LinkedIn, Reddit, X/Twitter, YouTube, and TikTok. It uses Groq's LLMs for **multimodal sentiment, theme, and virality analysis**.
+## How It Works
+1. **Scraping**: Uses Playwright to scrape content from URLs in a headless browser. Supports persistent sessions for authenticated platforms.
+2. **Transcription**: For video/audio content (e.g., YouTube, TikTok), transcribes using Groq's Whisper model.
+3. **Analysis**: Processes scraped/transcribed text with Groq LLMs for sentiment, themes, and virality scores. Optional vector-based similarity search and clustering.
+4. **Output**: Results are saved to files and served via a FastAPI web server or CLI.
 
-Demo: https://drive.google.com/file/d/1vekIT3JH41ksMzoFnnc9NYM-aiBKDB2h
-
----
-
-## Core Features
-
-### Content Acquisition
-- **Scraper** – Playwright with persistent sessions.
-- **Audio Transcriber** – YouTube via Groq Whisper.
-- **TikTok Transcriber** – yt_dlp + Groq Whisper.
-
-### Analysis
-- **Advanced Analyzer** – Text + image analysis (Groq LLMs).
-- **Virality Agent** – Scores content (1–10 scale).
-- **Trend Analyzer** – Tracks sentiment/themes over time.
-- **Vector Engine** – Embeddings for similarity & clustering.
-
-### Delivery
-- **CLI** – Analyze URLs from the terminal.
-- **Web Server** – FastAPI-based UI.
-- **Reports** – JSON + human-readable text.
-
----
-
-## Architecture
-
-Pipeline flow:
-1. Detect platform from URL.
-2. Scrape/transcribe content.
-3. Run multimodal analysis.
-4. Generate insights (sentiment, themes, virality).
-5. Output structured reports.
-
----
+## APIs Used
+- Groq API: For LLM analysis (e.g., meta-llama/llama-4-maverick-17b-128e-instruct) and audio transcription (Whisper).
+- Playwright: For browser automation and scraping.
 
 ## Installation
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-pip install -r requirements.txt
-playwright install chromium
-```
-
-Create `.env`:
-
-```env
-GROQ_API_KEY=your_key_here
-```
+1. Clone the repo.
+2. Install dependencies: `pip install -r requirements.txt`.
+3. Set up environment variables in .env (e.g., GROQ_API_KEY).
+4. Run the scraper: `python scraper.py <url>`.
 
 ## Usage
+- CLI: `python scraper.py <url>` for scraping.
+- Web: Run `python server.py` and access the UI at http://localhost:8000.
 
-### CLI
-
-```bash
-python app.py <url>                 # Basic analysis
-python app.py <url> --advanced      # Advanced analysis (default)
-python app.py --system              # System report
-```
-
-Examples:
-
-```bash
-python app.py https://www.linkedin.com/posts/...
-python app.py https://www.reddit.com/r/.../comments/...
-python app.py https://x.com/.../status/...
-python app.py https://www.youtube.com/watch?v=...
-python app.py https://www.tiktok.com/@user/video/...
-```
-
-### Web Interface
-
-```bash
-python server.py
-```
-Open: `http://localhost:8000/web/`
-
-## Dependencies
-
-* **Groq API** – LLMs + Whisper for text & audio analysis.
-* **Playwright** – Web scraping.
-* **FFmpeg (pydub)** – Audio extraction & processing.
-* **FastAPI** – Web server for the UI.
-
-## Limitations
-
-* **LinkedIn** – Requires a logged-in persistent browser session.
-* **YouTube/TikTok** – Only first 3 minutes analyzed (coz of API limit)
-* **Trend & vector modules** – Disabled by default.
-* **Multimodal image analysis** – Only the first image is processed.
-
-## File Structure
-
-```bash
+## License
+This project is licensed under the MIT License. See LICENSE for details.
 app.py                  # Main pipeline
 server.py               # Web server
 scraper.py              # Scraping logic
